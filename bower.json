@@ -1,0 +1,30 @@
+{
+  "name": "currency-input",
+  "version": "0.1.0",
+  "authors": [
+    "Arne Jenssen <arne.jenssen@gmail.com>"
+  ],
+  "description": "An element for inputting currency and amount for Polymer 1.0",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "material-design"
+  ],
+  "main": "currency-input.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/exoer/currency-input/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#~1.0.4",
+    "paper-input": "PolymerElements/paper-input#~1.0.15",
+    "paper-item": "PolymerElements/paper-item#~1.0.5",
+    "paper-menu": "PolymerElements/paper-menu#~1.1.1",
+    "polymer": "Polymer/polymer#^1.1.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}

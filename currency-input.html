@@ -1,0 +1,125 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-input/paper-input.html">
+
+
+
+<!--
+An element for inputting a currency and amount
+
+Example:
+
+    <currency-input amount='{{amount}}' currency={{currency}} label='Price'></currency-input>
+
+@group Seed Elements
+@element currency-input
+@demo demo/index.html
+
+-->
+<dom-module id="currency-input">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+  
+      #amountInput {
+        margin-top: 8px;
+      }
+      #currency {
+        width: 80px;
+      }
+
+    </style>
+      <div class='layout horizontal'>
+        <div class='flex_' id='currency'>
+          <paper-dropdown-menu label="Currency" id='currencyMenu'>
+            <paper-menu class="dropdown-content" selected="{{selected}}">
+              <template is="dom-repeat" items="{{currencies}}" as="currency">
+                <paper-item value='[[currency]]'>[[currency]]</paper-item>
+              </template>
+            </paper-menu>
+          </paper-dropdown-menu>
+        </div>
+        <div>
+          <paper-input id='amountInput' type='number' value='{{amount}}' label='[[label]]' min='0' step='0.1' on-change='_onAmount'></paper-input>
+        </div>
+      </div>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'currency-input',
+
+    listeners: {  
+      'iron-select': '_onCurrency'
+    },
+
+    properties: {
+      /**
+       * The amount of money
+       * @type (number)
+      */
+        amount: {
+          type: Number,
+          value: 1.00,
+          notify: true,
+
+        },
+      /**
+       * The currency, you can give it a default value
+       * @type (String)
+      */        
+        currency: {
+          type: String,
+          value: 'EUR',
+          notify: true,
+          observer: '_onCurrency'
+        },
+      /**
+       * Label for the amount input
+       * @type (String)
+      */        
+        label: {
+          type: String,
+          value: 'Price'
+        }
+
+    },
+    ready: function() {
+      // creates the currencies for the dropdown
+      this.currencies = ['EUR','GBP', 'USD', 'NOK', 'SEK', 'DKK'];
+      this.selected = this.currencies.indexOf(this.currency)
+    },
+
+    _onAmount: function() {
+      this.amount = parseFloat(this.amount).toFixed(2)
+    },
+    _onCurrency: function() {
+      if (this.currency && this.currencies) {
+        var c = this.$.currencyMenu.selectedItem.value
+        this.set('currency', c)
+
+      }
+    }
+
+  });
+
+</script>
