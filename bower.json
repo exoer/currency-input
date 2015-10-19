@@ -1,12 +1,13 @@
 {
   "name": "currency-input",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     "Arne Jenssen <arne.jenssen@gmail.com>"
   ],
   "description": "An element for inputting currency and amount for Polymer 1.0",
   "keywords": [
     "web-component",
+    "web-components",
     "polymer",
     "material-design"
   ],
